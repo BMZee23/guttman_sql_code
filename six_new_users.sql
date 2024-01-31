@@ -25,7 +25,17 @@ FROM mysql.user;
 
 FLUSH PRIVILEGES
 
-/*
+REVOKE  ALL, GRANT OPTION FROM 'admin_001'@'%';
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+FLUSH PRIVILEGES;
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+
 
 SELECT 'DROPPING USER admin_002' AS 'INSTALLATION PROGRESSING';
 
@@ -52,7 +62,12 @@ WITH
 SELECT user, show_db_priv, account_locked
 FROM mysql.user;
 
-/*
+FLUSH PRIVILEGES;
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+
 
 SELECT 'DROPPING USER admin_003' AS 'INSTALLATION PROGRESSING';
 
@@ -79,7 +94,10 @@ WITH
 SELECT user, show_db_priv, account_locked
 FROM mysql.user;
 
-/*
+FLUSH PRIVILEGES;
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
 
 SELECT 'DROPPING USER admin_004' AS 'INSTALLATION PROGRESSING';
 
@@ -106,7 +124,11 @@ WITH
 SELECT user, show_db_priv, account_locked
 FROM mysql.user;
 
-/*
+FLUSH PRIVILEGES;
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
 
 SELECT 'DROPPING USER admin_005' AS 'INSTALLATION PROGRESSING';
 
@@ -132,4 +154,38 @@ WITH
 
 SELECT user, show_db_priv, account_locked
 FROM mysql.user;
-/
+
+FLUSH PRIVILEGES;
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+SELECT 'DROPPING USER admin_006' AS 'INSTALLATION PROGRESSING';
+
+DROP user
+IF EXISTS 'admin_006'@'%';
+
+SELECT 'ADDING USER admin_006' as 'INSTALLATION PROGRESSING';
+CREATE user
+IF NOT EXISTS 'ADMIN_006'@'%'
+IDENTIFIED by 'guttmanGrizzlies_2024'
+WITH
+-- SET RESOURCE LIMITS
+  MAX_QUERIES_PER_HOUR 20
+  MAX_UPDATES_PER_HOUR 10
+  MAX_CONNECTIONS_PER_HOUR 5
+  MAX_USER_CONNECTIONS 2
+  -- SET PASSWORD OPTIONS
+  FAILED_LOGIN_ATTEMPTS 4
+  PASSWORD_LOCK_TIME UNBOUNDED
+  PASSWORD EXPIRE INTERVAL 90 DAY
+  PASSWORD HISTORY 5
+  PASSWORD REUSE INTERVAL 365 DAY;
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+FLUSH PRIVILEGES;
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
