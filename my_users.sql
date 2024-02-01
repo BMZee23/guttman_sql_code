@@ -50,4 +50,7 @@ TO 'read_only_employees_db'@'%';
 
 FLUSH PRIVILEGES
 
+
+
+
 /*
