@@ -1,6 +1,6 @@
 -- DROP ROLES
 DROP ROLE
-IF EXISTS 'READ_ONLY_CLASSICMODELS_DB'@'%';
+IF EXISTS 'read_only_classicmodels_db'@'%';
 
 -- CHECK TO SEE GONE
 SELECT user, show_db_priv, account_locked
@@ -9,9 +9,11 @@ FROM mysql.user;
 -- CREATE ROLE
 CREATE ROLE
 IF NOT EXISTS
-     'READ_ONLY_CLASSICMODELS_DB', 'admin_user',
-     'READ_ONLY_ EMPLOYEES_DB', 'app_user';
+     'read read_only_classicmodels_db', 'admin_user',
+     'read read_only_employees_db', 'app_user';
   FLUSH PRIVILEGES
+
+
 -- GRANT PRIVILEGES
 GRANT SELECT
 ON classicmodels.*
@@ -40,15 +42,19 @@ TO 'read_only_employees_db'@'%';
 SELECT user, show_db_priv,account_locked
 FROM mysql.user;
 
--- CREATE ROLES
-SELECT 'CREATING ROLES' AS 'INSTALLATION PROGRESSING';
-GRANT 'admin_007' TO 'admin_006';
+-- GRANT PRIVILEGES
+  GRANT SELECT
+  ON classicmodels.*
+  TO 'read_only_classicmodels_db'@'%';
 
-GRANT 'read_only_classicmodels_db' to 'admin_001', 'admin_003';
+  GRANT CREATE
+  ON *.*
+  TO 'admin_user'@'%';
 
-GRANT 'read_only_employees_db' to 'admin_002'; 'admin_004';
+  GRANT INSERT, UPDATE
+  ON employees.employees
+  TO 'app_user'@'%';
 
-GRANT 'app_user' TO 'admin_006';
-
-GRANT 'admin_user' TO 'admin_005';
-FLUSH PRIVILIEGE
+  GRANT SELECT
+  ON employees.*
+  TO 'read_only_employees_db'@'%';
