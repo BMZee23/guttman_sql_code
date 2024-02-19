@@ -1,12 +1,12 @@
 SELECT 'DROPPING USER brt_user' AS 'INSTALLATION STARTING';
 
 DROP USER
-IF EXISTS 'brt_user'@'localhost'
+IF EXISTS 'brt_user'@%';
 
 SELECT 'ADDING USER brt_user' AS 'INSTALLATION PROGRESSING';
 
 CREATE USER
-IF NOT EXISTS 'brt_user'@'localhost'
+IF NOT EXISTS 'brt_user'@%';
 IDENTIFIED BY 'CiscoAWS2318%';
 FAILED_LOGIN_ATTEMPTS 20
 PASSWORD_LOCK_TIME UNBOUNDED
@@ -15,10 +15,10 @@ PASSWORD HISTORY 20
 PASSWORD REUSE INTERVAL 365 DAY;
 
 
-REVOKE ALL, GRANT OPTION FROM 'brt_user'@'localhost';
+REVOKE ALL, GRANT OPTION FROM 'brt_user'@%';
 
 GRANT ALL ON *.*
-TO 'brt_user'@'localhost';
+TO 'brt_user'@%';
 
 SELECT user, Show_db_priv, account_locked
 FROM mysql.user;
@@ -56,11 +56,11 @@ TO 'admin_007'@'%';
 SELECT 'DROPPING USER RT_USER' AS 'INSTALLATION STARTING';
 
 drop user
-IF EXISTS 'rt_user'@'localhost';
+IF EXISTS 'rt_user'@%;
 
 SELECT 'ADDING USER rt_user' AS 'INSTALLATION PROGRESSING';
 CREATE USER
-IF NOT EXISTS 'rt_user'@'localhost'
+IF NOT EXISTS 'rt_user'@%;
 IDENTIFIED BY 'super_secret_pswd_911';
 FAILED_LOGIN_ATTEMPTS 20
 PASSWORD_LOCK_TIME UNBOUNDED
@@ -68,10 +68,10 @@ PASSWORD EXPIRE INTERVAL 90 DAY
 PASSWORD HISTORY 20
 PASSWORD REUSE INTERVAL 365 DAY;
 
-REVOKE ALL, GRANT OPTION FROM 'rt_user'@'localhost';
+REVOKE ALL, GRANT OPTION FROM 'rt_user'@%;
 
 GRANT ALL ON *.*
-TO 'rt_user'@'localhost';
+TO 'rt_user'@%;
 
 SELECT user, Show_db_priv, account_locked
 FROM MYSQL.USER;
