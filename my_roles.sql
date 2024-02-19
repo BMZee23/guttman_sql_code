@@ -9,15 +9,23 @@ FROM mysql.user;
 -- CREATE ROLE
 CREATE ROLE
 IF NOT EXISTS
-     'read read_only_classicmodels_db', 'admin_user',
-     'read read_only_employees_db', 'app_user';
-  FLUSH PRIVILEGES
+     'read_only_classicmodels_db', 'admin_user',
+     'read_only_employees_db', 'app_user';
 
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+  FLUSH PRIVILEGES
+/*
 
 -- GRANT PRIVILEGES
 GRANT SELECT
 ON classicmodels.*
 to 'read_only_classicmodels_db'@'%';
+
+GRANT privilege [,privilege],..
+ON privilege_level
+TO account_name;
 
 GRANT CREATE, DROP
 ON employees.*
