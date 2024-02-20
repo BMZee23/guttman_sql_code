@@ -48,16 +48,12 @@ PASSWORD EXPIRE INTERVAL 90 DAY
 PASSWWORD HISTORY 5
 PASSWORD REUSE INTERVAL 365 DAY;
 
-REVOKE ALL, GRANT OPTION FROM 'rt_user'@'localhost';
 
 GRANT ALL ON *.*
 TO 'rt_user'@'localhost';
 
 SELECT 'COMPLETED' AS 'INSTALLATION DONE';
 
-SELECT user, host, show_db_priv, account_locked
-FROM mysql.user;
-FLUSH PRIVILEGES;
 
 
 
