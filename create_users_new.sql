@@ -33,7 +33,37 @@ SELECT 'ADDED USER admin_007' AS 'INSTALLATION COMPLETED';
 
 
 
+-- create rt_user
+-- check if rt_user exists and drop if it does
+SELECT 'DROPPING USER rt_user' AS 'INSTALLATION STARTED';
 
+DROP USER IF EXISTS 'rt_user'@'localhost';
+
+SELECT 'ADDING USER rt_user' AS 'INSTALLATION PROGRESSING';
+
+CREATE USER 'rt_user'@'localhost'
+IDENTIFIED BY 'super_secret_password_911'
+PASSWORD EXPIRE INTERVAL 90 DAY
+PASSWORD HISTORY 5
+PASSWORD REUSE INTERVAL 365 DAY
+FAILED_LOGIN_ATTEMPTS 0
+PASSWORD_LOCK_TIME 0;
+
+-- revoke all privileges and grant option from 'rt_user'@'localhost'
+REVOKE ALL, GRANT OPTION FROM 'rt_user'@'localhost';
+
+-- grant ALL privileges on *.* to 'rt_user'@'localhost'
+GRANT ALL ON *.* TO 'rt_user'@'localhost';
+
+-- select specific columns from mysql.user table
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+-- return informational message that indicates completion of user addition
+SELECT 'Completed adding rt_user' AS 'INSTALLATION DONE';
+
+-- flush privileges to ensure changes take effect immediately
+FLUSH PRIVILEGES;
 
 
 
