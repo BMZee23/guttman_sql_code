@@ -27,6 +27,3 @@ WITH
  FROM mysql.user;
 
  FLUSH PRIVILEGES;
-
- SELECT user, show_db_priv, account_locked
- FROM mysql.user;

@@ -2,9 +2,6 @@
 DROP ROLE
 IF EXISTS 'READ_ONLY_CLASSICMODELS_DB'@'%';
 
--- CHECK TO SEE GONE
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
 
 -- CREATE ROLE
 CREATE ROLE
@@ -17,3 +14,5 @@ IF NOT EXISTS
      create user a_2 for login a_2;
      grant insert to a_2;
      grant select to a_2;
+
+FLUSH PRIVILEGES;
