@@ -66,3 +66,5 @@ FROM mysql.user;
   GRANT SELECT
   ON employees.*
   TO 'read_only_employees_db'@'%';
+
+FLUSH PRIVILEGES
