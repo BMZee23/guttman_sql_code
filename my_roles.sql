@@ -16,7 +16,7 @@ SELECT user, show_db_priv, account_locked
 FROM mysql.user;
 
   FLUSH PRIVILEGES
-/*
+
 
 -- GRANT PRIVILEGES
 GRANT SELECT
