@@ -1,4 +1,3 @@
-
 SELECT 'DROPPING USER admin_001' AS 'INSTALLATION PROGRESSING';
 
 DROP USER
@@ -24,20 +23,6 @@ WITH
 SELECT user, show_db_priv, account_locked
 FROM mysql.user;
 
-
-
-REVOKE  ALL, GRANT OPTION FROM 'admin_001'@'%';
-
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-
-
-
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-
-
-
 SELECT 'DROPPING USER admin_002' AS 'INSTALLATION PROGRESSING';
 
 DROP USER
@@ -59,16 +44,6 @@ WITH
   PASSWORD EXPIRE INTERVAL 90 DAY
   PASSWORD HISTORY 5
   PASSWORD REUSE INTERVAL 365 DAY;
-
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-
-FLUSH PRIVILEGES;
-
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-
-
 
 SELECT 'DROPPING USER admin_003' AS 'INSTALLATION PROGRESSING';
 
@@ -92,14 +67,6 @@ WITH
   PASSWORD HISTORY 5
   PASSWORD REUSE INTERVAL 365 DAY;
 
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-
-FLUSH PRIVILEGES;
-
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-
 SELECT 'DROPPING USER admin_004' AS 'INSTALLATION PROGRESSING';
 
 DROP USER
@@ -121,11 +88,6 @@ WITH
   PASSWORD EXPIRE INTERVAL 90 DAY
   PASSWORD HISTORY 5
   PASSWORD REUSE INTERVAL 365 DAY;
-
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-
-FLUSH PRIVILEGES;
 
 SELECT user, show_db_priv, account_locked
 FROM mysql.user;
@@ -156,14 +118,6 @@ WITH
 SELECT user, show_db_priv, account_locked
 FROM mysql.user;
 
-FLUSH PRIVILEGES;
-
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-/*
-
-
-
 SELECT 'DROPPING USER admin_006' AS 'INSTALLATION PROGRESSING';
 
 DROP USER
@@ -186,13 +140,6 @@ WITH
   PASSWORD HISTORY 5
   PASSWORD REUSE INTERVAL 365 DAY;
 
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
-
-FLUSH PRIVILEGES;
-
-SELECT user, show_db_priv, account_locked
-FROM mysql.user;
 
 SELECT 'ADDING ROLES' AS 'INSTALLATION PROGRESSING';
 -- CREATE ROLE
@@ -242,7 +189,6 @@ GRANT 'app_user' to 'admin_006';
 
 GRANT 'admin_user' to 'admin_005';
 
-FLUSH PRIVILEGES;
 
 -- CREATE ROLES
 SELECT 'ENABLING ROLES' AS 'INSTALLATION PROGRESSING';
@@ -254,3 +200,5 @@ ROLE ALL TO 'admin_001'@'%', 'admin_002'@'%',
 
 -- CREATE ROLES
 SELECT 'SCRIPT DONE' AS 'INSTALLATION PROGRESSING';
+
+FLUSH PRIVILEGES;
